@@ -3,6 +3,8 @@ int ledGreen = 2;
 int ledRed = 3;
 int ledBlue = 4;
 
+
+
 void setup() 
 {
     pinMode(ledGreen, OUTPUT);    //Define LED pins
@@ -11,9 +13,9 @@ void setup()
     Serial.begin(9600);           //Serial monitor used to determine limit values
 }
 
-void loop() {
-  int temp = analogRead(buttonPin); //Read the analogue input
-  //Serial.println(temp);             //Display the read value in the Serial monitor
+//Read Analog 0 PIN
+int ReadSens_and_Condition(){
+ int temp = analogRead(buttonPin); //Read the analogue input
  
   if (temp < 100)                   //Lower limit for first button - if below this limit, no button pushed & LEDs are off
   {
@@ -27,8 +29,9 @@ void loop() {
     digitalWrite(ledGreen, LOW);
     digitalWrite(ledRed, HIGH);
     digitalWrite(ledBlue, HIGH);
-    Serial.println("Button 1");
+    Serial.println("Button 1"); //Display message
     delay(100); 
+    
   }
   else if (temp < 250)              //Second button limit
   {
@@ -64,6 +67,13 @@ void loop() {
   }
   
 delay(100);                         //Delay for stability
+
+}
+//----- BEGIN LOOP -----//
+void loop() {
+
+  int temp = ReadSens_and_Condition(); //Read the analogue input and get the result
+
 
 }
 
